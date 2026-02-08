@@ -125,7 +125,7 @@ contract DeleverageOperator is ReentrancyGuardTransient, EVCUtil, IErrors, IEven
         IERC20(targetAsset).forceApprove(targetVault, debtToRepay);
         IEVault(targetVault).repay(debtToRepay, collateralVault);
 
-        require(IEVault(targetVault).debtOf(collateralVault) <= maxDebt, T_DebtMoreThanMin());
+        require(IEVault(targetVault).debtOf(collateralVault) <= maxDebt, T_DebtMoreThanMax());
 
         // Step 4: Withdraw collateral
         IEVC(evc).call({
